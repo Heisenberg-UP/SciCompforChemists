@@ -79,3 +79,112 @@ plt.show()
 
 
 # %% Exercise 4
+import matplotlib.pyplot as plt # Imports plotting library
+import numpy as np # Imports math/array library
+
+t = list(range(0, 60, 1))
+
+
+def first_order_kinetics(time):
+    '''
+    Function will calculate the change in [A] with respect to time.
+    [A] = [A]_0 e^-2kt
+    [A](0) = 1
+    For this we will set [A]_0 to 1M.
+    Enter time as a list for the concentration as a function of time to yield the
+    best data.
+    '''
+    c = []
+    for i in time:
+        conc = np.exp(-2 * 0.12 * i)
+        c.append(conc)
+    return c
+
+
+plt.plot(t, first_order_kinetics(t), color='green') # Plots data provided
+plt.xlabel('Time (s)') # X label
+plt.ylabel('Concentration [A]') # Y label
+plt.title('First Order Kinetics\n2A --> P') # Graph title
+plt.show()
+
+
+# %% Exercise 5
+import matplotlib.pyplot as plt # Imports graphing library
+import pandas as pd # Imports data manipulation library
+
+Data = pd.read_csv('data/gc_trace.csv') # Pandas reads the .csv file
+df = pd.DataFrame(Data, columns=['time', 'abs_intensity']) # Pandas converts .csv into dataframe
+
+plt.plot(df['time'], df['abs_intensity'], color='red') # Sets up graph
+plt.xlabel('Time (min)') # X label
+plt.ylabel('Intensity') # Y label
+plt.title('Gas Chromatography Graph') # Graph title
+plt.show()
+
+
+# %% Exercise 6
+import matplotlib.pyplot as plt # Imports plotting library
+import pandas as pd # Imports data manipulation library
+
+Data = pd.read_csv('data/ms_bromobenzene.csv') # Pandas reads the .csv file
+df = pd.DataFrame(Data, columns=['m/z', 'abs_intensity']) # Pandas converts variable into dataframe
+
+plt.stem(df['m/z'], df['abs_intensity'], markerfmt=' ') # Plots data
+plt.xlabel('m/z') # X label
+plt.ylabel('Intensity') # Y label
+plt.title('Mass Spectrum Bromobenzene') # Graph title
+plt.show()
+
+
+# %% Exercise 7
+import matplotlib.pyplot as plt # Imports plotting library
+
+percents = [78, 21, 1] # Percents of gases in atmosphere
+
+plt.pie(percents, labels=['N$_2$', 'O$_2$', 'Other Gases'], explode=(0, 0, 0.2)) # Plots data
+plt.title('Atmospheric Composition') # Graph title
+plt.axis('equal') # I dont know what this does
+plt.show()
+
+
+# %% Exercise 8
+import matplotlib.pyplot as plt # Imports plotting library
+import random # Imports library for random value generation
+
+rdn = [random.random() for value in range(1000)] # Creates random list 
+
+plt.hist(rdn, bins=10, edgecolor='k') # Plots data into 10 bins
+plt.xlabel('Numerical Value') # X label
+plt.ylabel('Number of Numerical Values') # Y label
+plt.show()
+
+
+# %% Exercise 9
+import matplotlib.pyplot as plt # Imports plotting library
+
+ppm = [7.52, 4.00, 3.60, 3.44] # ppm shift (x axis)
+intensity = [1.52, 3.90, 5.74, 5.78] # Intensity denotes the intensity of fourier transform
+
+plt.stem(ppm, intensity, markerfmt=' ') # Plots data
+plt.xlabel('ppm') # x label
+plt.ylabel('Intensity') # Y label
+plt.title('$^1$H NMR Spectrum of Caffeine in CDCl$_3$') # Graph title
+plt.gca().invert_xaxis()
+plt.show()
+
+
+# %% Exercise 10
+import matplotlib.pyplot as plt # Imports plotting library
+
+step = [1, 2, 3, 4, 5, 6, 7] # x axis
+kcal = [0.0, 11.6, 9.8, 13.4, 5.8, 8.3, 2.7] # y axis
+
+plt.step(step, kcal) # Plots graph
+plt.xlabel('Step number') # X label
+plt.ylabel('Energy (Kcal)') # Y label
+plt.title('Energy per step in the binding and splittle of H$_2$(g)')
+plt.show()
+
+
+# %% Exercise 11
+import matplotlib.pyplot as plt # Imports plotting library
