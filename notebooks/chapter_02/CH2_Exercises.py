@@ -1,4 +1,4 @@
-# Exercise 1
+# %% Exercise 1
 import itertools
 
 import numpy as np  # Imports NumPy which is a greate mathematical module
@@ -18,8 +18,11 @@ def natural_log():
 brackets of an empty list. Extremely efficient!'''
 List = [np.log(numbers) for numbers in range(2, 24)]
 
+natural_log()
+print(List)
 
-# Exercise 2
+
+# %% Exercise 2
 def trans(coord, x=0, y=0, z=0):
     '''
     ([x,y,z], x=0, y=0, z=0) -> [x,y,z]
@@ -32,14 +35,19 @@ def trans(coord, x=0, y=0, z=0):
     print(coord)
 
 
-# Exercise 3
+trans([0, 0, 0], 3, 2, 1)
+
+
+# %% Exercise 3
 '''Lambda function allows simple functions to be quickly assigned to
 variables for easy and simple use. Below is a lambda function assigned to
 calculating the square of a input value'''
 sqr_func = lambda x: x**2
 
+print(sqr_func(2))
 
-# Exercise 4
+
+# %% Exercise 4
 '''Dictionary of all the amino acids with a key of their one letter 
 abbreviation and a value of their three letter abbreviation'''
 aacid = {'G': 'GLY', 'A': 'ALA', 'V': 'VAL', 'P': 'PRO', 'L': 'LEU',
@@ -47,8 +55,10 @@ aacid = {'G': 'GLY', 'A': 'ALA', 'V': 'VAL', 'P': 'PRO', 'L': 'LEU',
          'E': 'GLU', 'H': 'HIS', 'S': 'SER', 'D': 'ASP', 'N': 'ASN',
          'K': 'LYS', 'Y': 'TYR', 'C': 'CYS', 'T': 'THR', 'Q': 'GLN'}
 
+print(aacid)
 
-# Exercise 5
+
+# %% Exercise 5
 Acid1 = {'HCl', 'HNO3', 'HI', 'H2SO4'}  # Dummy set 1
 Acid2 = {'HI', 'HBr', 'HClO4', 'HNO3'}  # Dummy set 2
 
@@ -68,8 +78,10 @@ Acid1.add('HBrO3')  # Adds a new object to the set
     # Exercise 5D
 Acid_subtraction = Acid1 - Acid2  # Generates a set with the differences
 
+print(str(Acid_addition) + '\n' + str(Acid_overlap) + '\n' + str(Acid1) + '\n' + str(Acid_subtraction))
 
-# Exercise 6
+
+# %% Exercise 6
 import os  # Module imports operating system authorizations
 os.chdir('/Users/keeganeveritt/Desktop')  # Sets directory to Desktop
 for files in os.listdir():  # For loop iterates over all files in Directory
@@ -79,7 +91,8 @@ files. Terminal will hide files that serve a purpose for the OS to use
 without the need of the User.'''
 
 
-# Exercise 7
+# %% Exercise 7
+import numpy as np
 import random  # Imports module that supports random processes
 
 
@@ -89,6 +102,7 @@ value of the list'''
 random_list = [random.randrange(0, 9) for i in range(11)]
 random_mean = np.mean(random_list)
 
+print(random_mean)
 
     # Exercise 7B
 '''Creates a random list with integers from 0 -> 9 and tajes the mean
@@ -100,8 +114,14 @@ random list in 7A was 2.7. Since the values are between 0 and 9, when
 10,000 random values between said range are averaged you will approach
 the mid-point between the range'''
 
+print(random_mean)
 
-# Exercise 8
+
+# %% Exercise 8
+import random
+import itertools
+import numpy as np
+
 # Given code from module
 from random import randint  # Imports random integer module from native
 atoms = []  # Empty list of atomic coordinates to append to
@@ -119,12 +139,14 @@ def distance(a, b):  # Function defines the magnitude of distance
 min_distance = float('inf')
 for a, b in itertools.combinations(atoms, 2):
     min_distance = min(min_distance, distance(a, b))
+
+print('\n', str(min_distance))
 ''' I am lost to how Python knows how to calculate this by using itertools
 I believe it is doing two combinations of each set of vectors but I dont
 know how it knows which to differentiate a, b and assign appropriate values'''
 
 
-# Exercise 9
+# %% Exercise 9
     # Exercise 9A
 a_symbol = ['H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne']
 a_number = list(range(1, 11, 1))
@@ -136,29 +158,43 @@ info_lis = []  # Empty list which can be appended to
 for pair in zipped:  # For loop for iterates over entire list
     info_lis.append(pair)  # Appends pair (atomic number, symbol) into list
 
+print(info_lis)
 
-# Exercise 10
+
+# %% Exercise 10
 sym = ['H', 'He', 'Li', 'Be', 'B', 'C']  # Atomic symbol list
 name = ['Hydrogen', 'Helium', 'Lithium', 'Beryllium', 'Boron', 'Carbon']  # Atomic name list
 Dict = dict(zip(sym, name))
+
+print(Dict)
 '''Dict() only allows one argument but the question requires two, by zipping
 the two lists together, the Dict() function can be applied to both simultaneously'''
 
 
-# Exercise 11
+# %% Exercise 11
+import random 
+
 numbers = enumerate([random.randrange(0, 21) for i in range(11)])
 index_values =[]  # Empty list to append to
 for index, values in numbers:  # iterates over list
     if values > 10:  # if statement allows python to use indeces with values of 10 or more
         index_values.append(index)  # Appends to empty list
 
+print(index_values)
 
-# Exercise 12
+
+# %% Exercise 12
+import numpy as np
+
+
 def mult_dim_dist(x=0, y=0, z=0):  # function defines magnitude of unit vector
     return np.sqrt(x**2 + y**2 + z**2)  # Distance formula
 
 
-# Exercise 13
+mult_dim_dist(0, 4, 0)
+
+
+# %% Exercise 13
 def alpha_decay(x, p, n):
     '''(alpha decays(x), protons(int), neutrons(int)) -> prints p and n remaining
     Takes in the number of alpha decays(x), protons(p), and number of neutrons(n)
@@ -173,3 +209,6 @@ def alpha_decay(x, p, n):
     p -= 2 * x
     n -= 2 * x
     print(str(p), ' protons and', str(n), ' neutrons remaining.')
+
+
+    alpha_decay(2, 10, 10)
