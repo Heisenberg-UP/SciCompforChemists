@@ -396,6 +396,7 @@ print(protein)
 
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.stats import t 
 
 
 def calculate_percentage_in_interval(sample_size):
@@ -436,4 +437,34 @@ plt.xlabel('Sample Size')
 plt.ylabel('Percentage in Interval')
 plt.title('Percentage of True Value in 95% Confidence Interval')
 plt.legend()
+plt.show()
+
+
+# %% Exercise 12
+
+#Imports
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Variables
+# Molecules
+molecules_pos = np.zeros(1000) # 1000 molecules all start with the same x position being 0
+
+# Weights for diffusion
+weights = [0.5, 0, -0.5]
+
+# Simulations
+steps = 500 # Steps in simulation
+
+# For loop for simulation
+for step in range(steps):
+    for i in range(len(molecules_pos)):
+        molecules_pos[i] += weights[np.random.choice([0, 1, 2])]
+
+# Build histogram
+plt.hist(molecules_pos, bins=100, color="lightblue", edgecolor='black')
+plt.xlabel('Distance of Diffusion') 
+plt.ylabel('# of Molecules')
+plt.title('Molecules Diffusion')
+
 plt.show()
