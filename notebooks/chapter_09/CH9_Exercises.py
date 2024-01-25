@@ -468,3 +468,7 @@ plt.ylabel('# of Molecules')
 plt.title('Molecules Diffusion')
 
 plt.show()
+
+
+# %% Exercise 13
+
