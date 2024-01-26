@@ -462,9 +462,9 @@ for step in range(steps):
         molecules_pos[i] += weights[np.random.choice([0, 1, 2])]
 
 # Build histogram
-plt.hist(molecules_pos, bins=100, color="lightblue", edgecolor='black')
-plt.xlabel('Distance of Diffusion') 
-plt.ylabel('# of Molecules')
-plt.title('Molecules Diffusion')
+plt.hist(molecules_pos, bins=100, color="lightblue", edgecolor='black') # Creates Histogram
+plt.xlabel('Distance of Diffusion') # X label
+plt.ylabel('# of Molecules') # Y label
+plt.title('Molecules Diffusion') # Title
 
-plt.show()
+plt.show() # Shows graph
