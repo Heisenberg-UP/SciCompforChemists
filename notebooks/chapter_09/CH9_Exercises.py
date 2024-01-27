@@ -472,3 +472,48 @@ plt.show()
 
 # %% Exercise 13
 
+# Imports
+import numpy as np # Math, array library
+import matplotlib.pyplot as plt # Plotting library
+
+
+# Functions
+def split(peaks, n, J, freq=400):
+    '''(list, int, float, freq=num) -> list
+    Takes in a list of peak ppm values for a single 
+    resonance(peaks),the number of identical neighboring 
+    protons(n), the coupling constant (J) in Hz, and the 
+    frequency of observation (freq) in MHz and returns a 
+    list of ppm values for all peaks in the splitting pattern.
+    '''
+    # check validity of input values
+    if not isinstance(peaks, list):
+        peaks = list([peaks])
+    if not isinstance(n, int):
+        print('Error: n must be an integer.')
+        return None
+    
+    # split the peak(s)
+    J_ppm  = J / freq
+    new_peaks = []
+    for peak in peaks:
+        new_peaks.extend([peak + 0.5 * J_ppm, peak - 0.5 * J_ppm])
+        
+    n =n - 1
+    
+    # perform next split or return result
+    if n > 0:
+        return split(new_peaks, n, J, freq=freq)
+    else:
+        return new_peaks
+    
+
+# Variables
+signal, ppm = np.histogram(split(3.82, 6, J=6, freq=400), bins=1000)
+
+# Plotting nmr simulation
+plt.gca().invert_xaxis() # Invert axis
+plt.plot(ppm[:-1], signal) # Plotting simulation
+plt.gca().invert_xaxis() # Invert xaxis (IDK Why but this is the only way this works)
+plt.xlabel('ppm') # X label
+plt.ylabel('Abundance') # Y label
