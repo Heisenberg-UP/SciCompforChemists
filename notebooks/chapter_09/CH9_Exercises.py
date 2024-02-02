@@ -467,6 +467,8 @@ plt.xlabel('Distance of Diffusion') # X label
 plt.ylabel('# of Molecules') # Y label
 plt.title('Molecules Diffusion') # Title
 
+plt.show() # Visualize graph
+
 
 # %% Exercise 13
 
@@ -515,3 +517,67 @@ plt.plot(ppm[:-1], signal) # Plotting simulation
 plt.gca().invert_xaxis() # Invert xaxis (IDK Why but this is the only way this works)
 plt.xlabel('ppm') # X label
 plt.ylabel('Abundance') # Y label
+
+plt.show() # Visualize graph
+
+
+# %% Exercise 14
+
+#######NOTE: THIS IS NOT THE CORRECT WAY OF ANSWERING THIS QUESTION. I AM KEEPING IT BECAUSE IT TELLS THE SAME INFO AND LOOKS COOL.#######
+
+# Imports
+import numpy as np # Imports array/data handling library
+import matplotlib.pyplot as plt # Imports data visualization library
+from scipy.signal import savgol_filter # Import signal handling library 
+
+# Variables
+iterations = range(0,2000) # How many times we are rolling the dice
+dice_avg = [] # list of dice value after each iteration
+
+# For loop to iterate over the simulationg
+for rolls in range(len(iterations)):
+    # Appends the sum of a six sided die rolled 6 times and takes the average 
+    dice_avg.append(np.sum(np.random.default_rng().integers(1, 7, size=6)) / 6)
+
+dice_rolling_average = savgol_filter(dice_avg, 100, 4)
+
+plt.plot(iterations, dice_avg, color='blue')
+plt.plot(iterations, dice_rolling_average, color='orange')
+
+plt.xlabel('Number of dice rolled 6 times') # X label
+plt.ylabel('Average value after six rolls') # Y labels
+
+plt.show()
+
+
+#  %% Exercise 14 done differently
+
+# Imports
+import numpy as np # Imports array/data handling library
+import matplotlib.pyplot as plt # Imports data visualization library
+
+# Variables
+iterations = range(0,2000) # Iterations of rolling dice
+dice_value = [] # intermediate list to help with averaging
+dice_avg = [] # List of dice values, rolling average
+
+# For loop to iterate over dice being rolled
+for rolls in range(len(iterations)):
+    # Append dice value for each roll to intermediate list
+    dice_value.append(np.random.default_rng().integers(1, 7, size=1))
+    # If statement to check if rolls is 0 so there isn't a division by 0
+    if rolls != 0:
+        # Append rolling average to dice_avg list.
+        # takes the current sum for each iteration of dice values and
+        # divides by the iteration which is equal to the number of die that have been rolled
+        dice_avg.append(np.sum(dice_value[1:]) / rolls)
+    else:
+        pass
+
+plt.plot(iterations[1:], dice_avg, color='maroon') # Plot data
+
+plt.xlabel('Number of Dice Rolled') # X label
+plt.ylabel('Average Value of Die Rolled') # Y label
+
+plt.show()
+# %%
