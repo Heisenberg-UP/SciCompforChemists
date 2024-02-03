@@ -580,4 +580,3 @@ plt.xlabel('Number of Dice Rolled') # X label
 plt.ylabel('Average Value of Die Rolled') # Y label
 
 plt.show()
-# %%
