@@ -23,7 +23,7 @@ else: # Data has already been transformed
     pdata = ng.process.proc_autophase.autops(data, 'acme') # phase data
 
 # Check peaks
-peak_data = ng.analysis.peakpick.pick(data.real, pthres=0.25) # Creates list of peak data and metadata
+peak_data = ng.analysis.peakpick.pick(pdata.real, pthres=0.25) # Creates list of peak data and metadata
 peaks = [ppm[int(x[0])] for x in peak_data] # List of peak locations in ppm
 print(peaks) # Make sure the CDCl3 peak is at 7.24 ppm
 
@@ -41,7 +41,7 @@ plt.ylabel('Abundance') # Y label
 plt.gca().invert_xaxis() # Invert axis for OG Chemists
 
 
-# %% Exercise 2 # TO BE FINISHED
+# %% Exercise 2 
 
 # Imports
 import nmrglue as ng # Imports nmr data handling library
@@ -79,6 +79,28 @@ else: # Data has already been transformed
     C_pdata = ng.process.proc_autophase.autops(C_data, 'acme') # phase data
 
 # Check peaks
-P_peak_data = ng.analysis.peakpick.pick(P_data.real, pthres=0.05) # Creates list of peak data and metadata
+P_peak_data = ng.analysis.peakpick.pick(P_pdata.real, pthres=0.005) # Creates list of peak data and metadata
 P_peaks = [P_ppm[int(x[0])] for x in P_peak_data] # List of peak locations in ppm
 print(P_peaks) # Make sure the CDCl3 peak is at 7.24 ppm
+
+# Check peaks
+C_peak_data = ng.analysis.peakpick.pick(C_pdata.real, pthres=0.005) # Creates list of peak data and metadata
+C_peaks = [C_ppm[int(x[0])] for x in C_peak_data] # List of peak locations in ppm
+print(C_peaks) # Make sure the CDCl3 peak is at 77.23 ppm
+
+# Plot data
+plt.figure(figsize=(16, 8)) # figure size
+
+plt.subplot(2,1,2) # Bottom graph
+plt.plot(C_ppm, C_pdata.real, color='black', alpha=0.70) # Carbon spectrum
+plt.xlabel('Chemical Shift, ppm') # xlabel
+plt.ylabel('Abundance')
+plt.xlim(0, 80) # Limits
+plt.gca().invert_xaxis() # For OG Chemists
+
+plt.subplot(2,1,1) # Top graph
+plt.plot(P_ppm, P_pdata.real, color='black', alpha=0.70) # Proton spectrum
+plt.xlabel('Chemical Shift, ppm') # xlabel
+plt.ylabel('Abundance')
+plt.xlim(0,4)
+plt.gca().invert_xaxis() # For OG Chemists
